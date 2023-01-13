@@ -4,7 +4,7 @@ import styles from "./MealItemForm.module.css";
 const MealItemForm = (props) => {
   const inputConfig = {
     type: "number",
-    id: "Amount",
+    id: "amount_" + props.id,
     min: 1,
     max: 5,
     step: 1,
