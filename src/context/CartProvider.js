@@ -22,7 +22,7 @@ const cartReducerHandler = (state, action) => {
       return { cartItems, totalPrice };
     case "REMOVE":
       index = state.cartItems.findIndex((item) => item.id === action.itemId);
-      currentItem = state.cartItems[0];
+      currentItem = state.cartItems[index];
 
       if (!currentItem) return state;
       if (currentItem.amount === 1) {
@@ -37,25 +37,6 @@ const cartReducerHandler = (state, action) => {
     default:
       return state;
   }
-
-  //   if (action.type === "ADD") {
-  //     const cartItems = state.cartItems.concat(action.item);
-  //     const totalPrice =
-  //       state.totalPrice + action.item.price * +action.item.amount;
-  //     return { cartItems, totalPrice };
-  //   } else if (action.type === "REMOVE") {
-  //     const currentItem = state.cartItems.find(
-  //       (item) => item.id === action.itemId
-  //     );
-  //     if (!currentItem) return state;
-  //     const cartItems = state.cartItems.filter(
-  //       (item) => item.id !== action.itemId
-  //     );
-  //     const totalPrice =
-  //       state.totalPrice - +currentItem.price * +currentItem.amount;
-  //     return { cartItems, totalPrice };
-  //   }
-  //   return state;
 };
 
 const CartProvider = (props) => {
@@ -66,7 +47,6 @@ const CartProvider = (props) => {
 
   const addToCart = (item) => {
     // Check if item already exists
-    console.log("new", item);
     cartDispatchHandler({ type: "ADD", item });
   };
 
